@@ -13,11 +13,10 @@ import "./css/style.css";
     camera.position.z = 2;
     const scene = new THREE.Scene();
     //
-    //circle
-    const radius = 1;
-    const segments = 16;
-    const geometry = new THREE.CircleBufferGeometry(radius, segments);
-    const circles = [makeInstance(geometry, 0x44aa88, 0)];
+    // earth
+    const radius = 0.5;
+    const geometry = new THREE.DodecahedronBufferGeometry(radius);
+    const earths = [makeInstance(geometry, 0x935d2b, 0)];
     //
     function render(time) {
       time *= 0.001; // convert time to seconds
@@ -28,11 +27,11 @@ import "./css/style.css";
         camera.updateProjectionMatrix();
       }
 
-      circles.forEach((circle, ndx) => {
+      earths.forEach((earth, ndx) => {
         const speed = 1 + ndx * 0.1;
         const rot = time * speed;
-        circle.rotation.x = rot;
-        circle.rotation.y = rot;
+        earth.rotation.x = rot;
+        earth.rotation.y = rot;
       });
 
       renderer.render(scene, camera);
