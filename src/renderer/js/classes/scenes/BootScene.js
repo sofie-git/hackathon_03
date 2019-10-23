@@ -10,19 +10,21 @@ export default class BootScene extends Phaser.Scene {
     });
   }
   create() {
-    // this.add.video(5, 1, "video");
-    // this.add.image("baksteen");
+    this.text = this.add.text(
+      100,
+      this.sys.game.config.height / 2,
+      "- Water - Aarde - Vuur - Lucht -",
+      {
+        font: "30px",
+        fill: "#FFFFFF"
+      }
+    );
     this.time.delayedCall(4000, this.startGame, [], this);
-    // var timer = scene.time.delayedCall(delay, callback, args, scope);
   }
 
   startGame() {
     this.scene.start(`preload`);
   }
-
-  // onComplete(){
-  //   this.
-  // }
 
   update() {}
 }
