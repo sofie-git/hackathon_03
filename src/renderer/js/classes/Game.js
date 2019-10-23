@@ -14,7 +14,7 @@ class Game extends Phaser.Game {
         default: `arcade`,
         arcade: {
           gravity: { y: 500 },
-          debug: false
+          debug: true
         }
       }
     });

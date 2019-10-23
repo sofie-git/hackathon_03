@@ -1,4 +1,5 @@
 import Bullet from "../gameobjects/Bullet";
+import Tile from "../gameobjects/Tile";
 
 export default class GameScene extends Phaser.Scene {
   constructor() {
@@ -17,6 +18,7 @@ export default class GameScene extends Phaser.Scene {
   create() {
     this.createBullet();
     this.createShip();
+    this.createTile();
   }
 
   createShip() {
@@ -26,9 +28,25 @@ export default class GameScene extends Phaser.Scene {
   createBullet() {
     this.bullet = new Bullet(this, this.sys.game.config.width / 2, 250);
   }
+
+  createTile() {
+    this.tiles = [];
+    this.tilesHvlheid = 32;
+    for (let i = 0; i < this.tilesHvlheid; i++) {
+      this.tile = new Tile(this, 250, Phaser.Math.Between(200, 470));
+      this.tiles.push(this.tile);
+    }
+    this.tiles.forEach(tile => {
+      tile.body.allowGravity = false;
+      //
+      this.physics.add.collider(tile, this.bullet);
+    });
+  }
+  //
   onHit() {
     this.gameOver = true;
   }
+  //
   update() {
     if (this.gameOver) {
       this.scene.start(`gameOver`);
