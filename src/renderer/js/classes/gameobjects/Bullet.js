@@ -6,17 +6,24 @@ export default class Bullet extends Phaser.Physics.Arcade.Sprite {
     scene.physics.add.existing(this);
     //
     this.setScale(1);
-    this.setBounce(4, Phaser.Math.FloatBetween(0, 0));
+    // this.setBounce(4, Phaser.Math.FloatBetween(0, 0));
     //this.setCollideWorldBounds(true);
     //
   }
 
-  create() {
-    this.bullet = this.add.image(0, 0, `bullet`);
-    const physicsImage = this.physics.add.image(
-      this.imageBullet.x,
-      this.imageBullet.y,
-      "bullet"
-    );
+  fire(x, y) {
+    this.setPosition(x - 50, y);
+
+    this.setActive(true);
+    this.setVisible(true);
+  }
+
+  update(time, delta) {
+    this.y -= this.speed * delta;
+
+    if (this.y < -50) {
+      this.setActive(false);
+      this.setVisible(false);
+    }
   }
 }

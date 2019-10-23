@@ -1,6 +1,8 @@
 import Bullet from "../gameobjects/Bullet";
 import Tile from "../gameobjects/Tile";
 
+const bullets = [];
+
 export default class GameScene extends Phaser.Scene {
   constructor() {
     super({
@@ -19,6 +21,8 @@ export default class GameScene extends Phaser.Scene {
     this.createBullet();
     this.createShip();
     this.createTile();
+
+    this.cursors = this.input.keyboard.createCursorKeys();
   }
 
   createShip() {
@@ -54,6 +58,10 @@ export default class GameScene extends Phaser.Scene {
   update() {
     if (this.gameOver) {
       this.scene.start(`gameOver`);
+    }
+
+    if (this.cursors.up.isDown) {
+      this.bullet.fire(400, 500);
     }
   }
 }
