@@ -18,7 +18,6 @@ class Game extends Phaser.Game {
         }
       }
     });
-    console.log(`GameScene`);
     console.log(`Constructor Game class`);
   }
 

@@ -3,6 +3,7 @@ export default class GameScene extends Phaser.Scene {
     super({
       key: `game`
     });
+    console.log(`GameScene`);
   }
 
   init() {
