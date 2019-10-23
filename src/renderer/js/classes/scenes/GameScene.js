@@ -1,3 +1,5 @@
+import Bullet from "../gameobjects/Bullet";
+
 export default class GameScene extends Phaser.Scene {
   constructor() {
     super({
@@ -8,10 +10,22 @@ export default class GameScene extends Phaser.Scene {
 
   init() {
     this.gameOver = false;
+    this.createBullet;
   }
 
   preload() {}
-  create() {}
+  create() {
+    this.createBullet();
+    this.createShip();
+  }
+
+  createShip() {
+    this.add.sprite(400, 500, "ship").setDepth(1);
+  }
+
+  createBullet() {
+    this.bullet = new Bullet(this, this.sys.game.config.width / 2, 250);
+  }
   onHit() {
     this.gameOver = true;
   }

@@ -11,7 +11,10 @@ export default class PreloadScene extends Phaser.Scene {
     // uit de les, nodig om gameScene op te starten
     this.load.on(`progress`, this.onProgress, this);
     this.load.on(`complete`, this.onComplete, this);
-    this.load.image(`baksteen`, `././assets/img/bak.jpg`);
+    //
+    this.load.image(`baksteen`, `./assets/img/bak.jpg`);
+    this.load.image(`bullet`, `./assets/img/bullet.png`);
+    this.load.image(`ship`, `./assets/img/ship.png`);
   }
 
   onProgress(value) {

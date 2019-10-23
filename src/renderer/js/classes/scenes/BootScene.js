@@ -9,12 +9,6 @@ export default class BootScene extends Phaser.Scene {
       key: `boot`
     });
   }
-
-  preload() {
-    console.log(`BootScene`);
-    // this.load.video("video", "video.mp4");
-    // this.load.image(`baksteen`, `././assets/img/bak.jpg`);
-  }
   create() {
     // this.add.video(5, 1, "video");
     // this.add.image("baksteen");
