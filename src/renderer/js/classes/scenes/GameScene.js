@@ -33,7 +33,11 @@ export default class GameScene extends Phaser.Scene {
     this.tiles = [];
     this.tilesHvlheid = 32;
     for (let i = 0; i < this.tilesHvlheid; i++) {
-      this.tile = new Tile(this, 250, Phaser.Math.Between(200, 470));
+      this.tile = new Tile(
+        this,
+        Phaser.Math.Between(100, 500),
+        Phaser.Math.Between(400, 100)
+      );
       this.tiles.push(this.tile);
     }
     this.tiles.forEach(tile => {
