@@ -6,7 +6,7 @@ class Game extends Phaser.Game {
   constructor() {
     super({
       type: Phaser.AUTO,
-      width: 800,
+      width: 1000,
       height: 500,
       title: `TEST`,
       scene: [BootScene, PreloadScene, GameScene, EndScene],
