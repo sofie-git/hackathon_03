@@ -15,6 +15,11 @@ export default class PreloadScene extends Phaser.Scene {
     this.load.image(`baksteen`, `./assets/img/bak.jpg`);
     this.load.image(`bullet`, `./assets/img/bullet.png`);
     this.load.image(`ship`, `./assets/img/ship.png`);
+    //
+    this.load.spritesheet("tile", "./assets/img/tile_spritesheet.png", {
+      frameWidth: 80,
+      frameHeight: 75
+    });
   }
 
   onProgress(value) {

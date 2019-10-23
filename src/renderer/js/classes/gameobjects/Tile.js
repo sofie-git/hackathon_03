@@ -1,6 +1,6 @@
 export default class Tile extends Phaser.Physics.Arcade.Sprite {
   constructor(scene, x, y) {
-    super(scene, x, y, `bullet`);
+    super(scene, x, y, `tile`);
     //
     scene.add.existing(this);
     scene.physics.add.existing(this);
