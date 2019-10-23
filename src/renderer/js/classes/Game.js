@@ -5,7 +5,6 @@ import EndScene from "./scenes/EndScene.js";
 class Game extends Phaser.Game {
   constructor() {
     super({
-      key: `game`,
       type: Phaser.AUTO,
       width: 800,
       height: 500,
