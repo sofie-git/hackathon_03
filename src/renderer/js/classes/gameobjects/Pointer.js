@@ -6,7 +6,6 @@ export default class Pointer extends Phaser.Physics.Arcade.Sprite {
     scene.physics.add.existing(this);
     //
     this.setScale(1);
-    this.setBounce(4, Phaser.Math.FloatBetween(0, 0));
     //
   }
 }

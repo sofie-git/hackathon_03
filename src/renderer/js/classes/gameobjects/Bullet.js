@@ -6,8 +6,7 @@ export default class Bullet extends Phaser.Physics.Arcade.Sprite {
     scene.physics.add.existing(this);
     //
     this.setScale(5);
-    // this.setBounce(4, Phaser.Math.FloatBetween(0, 0));
-    //this.setCollideWorldBounds(true);
+    //
     this.speed = 1;
     this.born = 0;
     this.direction = 0;
@@ -37,9 +36,5 @@ export default class Bullet extends Phaser.Physics.Arcade.Sprite {
     this.x += this.xSpeed * delta;
     this.y += this.ySpeed * delta;
     this.born += delta;
-    if (this.born > 1800) {
-      this.setActive(false);
-      this.setVisible(false);
-    }
   }
 }

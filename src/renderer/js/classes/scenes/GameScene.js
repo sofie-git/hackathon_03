@@ -2,7 +2,6 @@ import Bullet from "../gameobjects/Bullet";
 import Tile from "../gameobjects/Tile";
 import Pointer from "../gameobjects/Pointer";
 
-const bullets = [];
 const tiles = [];
 export default class GameScene extends Phaser.Scene {
   constructor() {
@@ -14,7 +13,6 @@ export default class GameScene extends Phaser.Scene {
 
   init() {
     this.gameOver = false;
-    this.createBullet;
   }
 
   preload() {}
@@ -24,17 +22,10 @@ export default class GameScene extends Phaser.Scene {
     this.createPointer();
     this.createMovements();
     this.createTile();
+    this.createTarget();
+
     //
     this.cursors = this.input.keyboard.createCursorKeys();
-    //
-    this.physics.add.collider(tiles, this.bullet, this.hitTile, null, this);
-    // this.physics.add.collider(
-    //   this.bullet,
-    //   this.tiles,
-    //   this.hitTile,
-    //   null,
-    //   this
-    // );
   }
 
   createBackground() {
@@ -54,55 +45,28 @@ export default class GameScene extends Phaser.Scene {
     // this.bg.setScale(this.scale).setScrollFactor(0);
   }
 
-  createMovements() {
-    this.input.on(
-      "pointerdown",
-      function(e) {
-        this.game.input.mouse.requestPointerLock();
-      },
-      this
-    );
-    //
-    this.input.on(
-      "pointermove",
-      function(e) {
-        if (this.input.mouse.locked) {
-          // console.log(e.movementX);
-          this.bullet.x += e.movementX;
-          this.bullet.y += e.movementY;
-        }
-      },
-      this
-    );
-    // Exit pointer lock when Q is pressed.
-    this.input.keyboard.on(
-      "keydown_Q",
-      function(e) {
-        if (this.game.input.mouse.locked) {
-          this.game.input.mouse.releasePointerLock();
-        }
-      },
-      0,
-      this
-    );
-  }
-
   createPointer() {
     this.pointer = new Pointer(
       this,
       this.sys.game.config.width / 2 + 50,
-      this.sys.game.config.height / 2 - 70
+      this.sys.game.config.height / 2 + 10
     ).setDepth(1);
     this.pointer.body.allowGravity = false;
   }
 
-  createBullet() {
-    this.bullet = new Bullet(
+  createTarget() {
+    this.target = new Bullet(
       this,
       this.sys.game.config.width / 2,
       this.sys.game.config.height / 2 + 100
     );
-    this.physics.add.collider(this.bullet, this.tiles);
+  }
+
+  createBullet() {
+    this.pointerBullets = this.physics.add.group({
+      classType: Bullet,
+      runChildUpdate: true
+    });
   }
 
   createTile() {
@@ -206,10 +170,11 @@ export default class GameScene extends Phaser.Scene {
     });
   }
 
-  hitTile(tileSprite, tileImage) {
+  hitTile(tileSprite, bullet) {
     try {
       //vuile code van koen (try catch)
       tileSprite.anims.play(`break`);
+      bullet.destroy();
       //
       tileSprite.setSize(0.01, 0.01, true);
       tileSprite.once(
@@ -234,15 +199,70 @@ export default class GameScene extends Phaser.Scene {
 
   //zodat de richter niet buiten zijn box gaat
   pointerConstrains() {
-    this.distX = this.bullet.x - this.pointer.x; // X distance between player & reticle
-    this.distY = this.bullet.y - this.pointer.y; // Y distance between player & reticle
+    this.distX = this.target.x - this.pointer.x;
+    this.distY = this.target.y - this.pointer.y;
 
-    // Ensures reticle cannot be moved offscreen (player follow)
-    if (this.distX > 210) this.bullet.x = this.pointer.x + 200;
-    else if (this.distX < -210) this.bullet.x = this.pointer.x - 170;
+    if (this.distX > 110) this.target.x = this.pointer.x + 100;
+    else if (this.distX < -160) this.target.x = this.pointer.x - 150;
 
-    if (this.distY > 210) this.bullet.y = this.pointer.y + 200;
-    else if (this.distY < -210) this.bullet.y = this.pointer.y - 170;
+    if (this.distY > 110) this.target.y = this.pointer.y + 100;
+    else if (this.distY < -160) this.target.y = this.pointer.y - 150;
+  }
+
+  createMovements() {
+    this.input.on(
+      "pointerdown",
+      function(e) {
+        this.game.input.mouse.requestPointerLock();
+      },
+      this
+    );
+    //
+    this.input.on(
+      "pointermove",
+      function(e) {
+        if (this.input.mouse.locked) {
+          // console.log(e.movementX);
+          this.target.x += e.movementX;
+          this.target.y += e.movementY;
+        }
+      },
+      this
+    );
+    // Exit pointer lock when Q is pressed.
+    this.input.keyboard.on(
+      "keydown_Q",
+      function(e) {
+        if (this.game.input.mouse.locked) {
+          this.game.input.mouse.releasePointerLock();
+        }
+      },
+      0,
+      this
+    );
+
+    //schieten met B
+    this.input.keyboard.on(
+      "keydown_B",
+      function(e) {
+        // haal de bullet op uit de pointerBullets
+        this.bullet = this.pointerBullets
+          .get()
+          .setActive(true)
+          .setVisible(true);
+        if (this.bullet) {
+          this.bullet.fire(this.pointer, this.target);
+          this.physics.add.collider(
+            tiles,
+            this.bullet,
+            this.hitTile,
+            null,
+            this
+          );
+        }
+      },
+      this
+    );
   }
 
   update() {
@@ -258,14 +278,10 @@ export default class GameScene extends Phaser.Scene {
     this.pointer.rotation = Phaser.Math.Angle.Between(
       this.pointer.x,
       this.pointer.y,
-      this.bullet.x,
-      this.bullet.y
+      this.target.x,
+      this.target.y
     );
 
     this.pointerConstrains();
-
-    if (this.cursors.up.isDown) {
-      this.bullet.fire(400, 500);
-    }
   }
 }
