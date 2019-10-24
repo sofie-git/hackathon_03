@@ -24,8 +24,9 @@ export default class GameScene extends Phaser.Scene {
     this.createPointer();
     this.createMovements();
     this.createTile();
-
+    //
     this.cursors = this.input.keyboard.createCursorKeys();
+    //
     this.physics.add.collider(
       this.tiles,
       this.bullet,
@@ -114,18 +115,18 @@ export default class GameScene extends Phaser.Scene {
     //   this.tiles.push(this.tile);
     // }
     //Links
-    this.tile01 = new Tile(this, 85, 282);
+    this.tile01 = new Tile(this, 75, 315);
     this.tiles.push(this.tile01);
-    this.tile02 = new Tile(this, 185, 282);
+    this.tile02 = new Tile(this, 175, 315);
     this.tiles.push(this.tile02);
-    this.tile03 = new Tile(this, 135, 313);
+    this.tile03 = new Tile(this, 125, 345);
     this.tiles.push(this.tile03);
     //Rechts
-    this.tile04 = new Tile(this, 802, 165);
+    this.tile04 = new Tile(this, 792, 257);
     this.tiles.push(this.tile04);
-    this.tile05 = new Tile(this, 902, 165);
+    this.tile05 = new Tile(this, 892, 257);
     this.tiles.push(this.tile05);
-    this.tile06 = new Tile(this, 852, 195);
+    this.tile06 = new Tile(this, 842, 287);
     this.tiles.push(this.tile06);
     //
     this.tiles.forEach(tile => {
