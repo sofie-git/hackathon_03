@@ -106,49 +106,23 @@ export default class GameScene extends Phaser.Scene {
   }
 
   createTile() {
-    // this.tiles = this.physics.add.staticGroup({});
-    // //Links
-    // this.tile01 = new Tile(this, 75, 315);
-    // this.tile02 = new Tile(this, 175, 315);
-    // this.tile03 = new Tile(this, 125, 345);
-    // //Rechts
-    // this.tile04 = new Tile(this, 792, 257);
-    // this.tile05 = new Tile(this, 892, 257);
-    // this.tile06 = new Tile(this, 842, 287);
-    // // toevoegen aan static group
-    // this.tiles.add(
-    //   this.tile01,
-    //   this.tile02,
-    //   this.tile03,
-    //   this.tile04,
-    //   this.tile05,
-    //   this.tile06
-    // );
-
-    // this.physics.add.collider(this.tiles, this.bullet);
-    // this.tilesHvlheid = 35;
-    // for (let i = 0; i < this.tilesHvlheid; i++) {
-    //   this.tile = new Tile(
-    //     this,
-    //     Phaser.Math.Between(100, 500),
-    //     Phaser.Math.Between(400, 100)
-    //   );
-    //   this.tiles.push(this.tile);
-    // }
     //Links
-    this.tile01 = new Tile(this, 75, 315, 0);
-    tiles.push(this.tile01);
-    this.tile02 = new Tile(this, 175, 315, 1);
-    tiles.push(this.tile02);
+    this.tile01 = new Tile(this, 307, 589, 0);
+    this.tile02 = new Tile(this, 375, 550, 1);
     this.tile03 = new Tile(this, 125, 345, 2);
-    tiles.push(this.tile03);
     //Rechts
     this.tile04 = new Tile(this, 792, 257, 3);
-    tiles.push(this.tile04);
     this.tile05 = new Tile(this, 892, 257, 4);
-    tiles.push(this.tile05);
     this.tile06 = new Tile(this, 842, 287, 5);
-    tiles.push(this.tile06);
+    //toevoegen aan de array
+    tiles.push(
+      this.tile01,
+      this.tile02,
+      this.tile03,
+      this.tile04,
+      this.tile05,
+      this.tile06
+    );
     //
     tiles.forEach(tile => {
       tile.body.allowGravity = false;
@@ -184,6 +158,7 @@ export default class GameScene extends Phaser.Scene {
     }
   }
 
+  //zodat de richter niet buiten zijn box gaat
   pointerConstrains() {
     this.distX = this.bullet.x - this.pointer.x; // X distance between player & reticle
     this.distY = this.bullet.y - this.pointer.y; // Y distance between player & reticle

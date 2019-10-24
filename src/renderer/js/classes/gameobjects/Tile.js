@@ -7,7 +7,7 @@ export default class Tile extends Phaser.Physics.Arcade.Sprite {
     scene.add.existing(this);
     scene.physics.add.existing(this);
     //
-    this.setScale(1);
+    this.setScale(1.2);
     this.setBounce(4, Phaser.Math.FloatBetween(0, 0));
     this.setCollideWorldBounds(true);
     //
