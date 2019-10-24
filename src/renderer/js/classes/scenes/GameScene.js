@@ -23,13 +23,20 @@ export default class GameScene extends Phaser.Scene {
     this.createBullet();
     this.createPointer();
     this.createMovements();
-    // this.createTile();
+    this.createTile();
 
     this.cursors = this.input.keyboard.createCursorKeys();
+    this.physics.add.collider(
+      this.tiles,
+      this.bullet,
+      this.hitTile,
+      null,
+      this
+    );
   }
 
   createBackground() {
-    this.img = this.add
+    this.bg = this.add
       .image(
         this.sys.game.config.width / 2,
         this.sys.game.config.height / 2,
@@ -37,6 +44,7 @@ export default class GameScene extends Phaser.Scene {
       )
       .setDepth(-1);
 
+    this.bg.alpha = 0.94;
     //zorgen dat de achtergrond gescaled wordt naar de volledige breedte en hoogte
     // this.scaleX = this.cameras.main.width / this.img.width;
     // this.scaleY = this.cameras.main.height / this.img.height;
@@ -68,8 +76,9 @@ export default class GameScene extends Phaser.Scene {
     this.input.keyboard.on(
       "keydown_Q",
       function(e) {
-        if (this.game.input.mouse.locked)
+        if (this.game.input.mouse.locked) {
           this.game.input.mouse.releasePointerLock();
+        }
       },
       0,
       this
@@ -95,29 +104,51 @@ export default class GameScene extends Phaser.Scene {
 
   createTile() {
     this.tiles = [];
-    this.tilesHvlheid = 32;
-    for (let i = 0; i < this.tilesHvlheid; i++) {
-      this.tile = new Tile(
-        this,
-        Phaser.Math.Between(100, 500),
-        Phaser.Math.Between(400, 100)
-      );
-      this.tiles.push(this.tile);
-    }
+    // this.tilesHvlheid = 32;
+    // for (let i = 0; i < this.tilesHvlheid; i++) {
+    //   this.tile = new Tile(
+    //     this,
+    //     Phaser.Math.Between(100, 500),
+    //     Phaser.Math.Between(400, 100)
+    //   );
+    //   this.tiles.push(this.tile);
+    // }
+    //Links
+    this.tile01 = new Tile(this, 85, 282);
+    this.tiles.push(this.tile01);
+    this.tile02 = new Tile(this, 185, 282);
+    this.tiles.push(this.tile02);
+    this.tile03 = new Tile(this, 135, 313);
+    this.tiles.push(this.tile03);
+    //Rechts
+    this.tile04 = new Tile(this, 802, 165);
+    this.tiles.push(this.tile04);
+    this.tile05 = new Tile(this, 902, 165);
+    this.tiles.push(this.tile05);
+    this.tile06 = new Tile(this, 852, 195);
+    this.tiles.push(this.tile06);
+    //
     this.tiles.forEach(tile => {
       tile.body.allowGravity = false;
       //
       this.physics.add.collider(tile, this.bullet);
+      tile.setSize(80, 70, false);
     });
   }
-  //
-  onHit() {
-    this.gameOver = true;
+
+  hitTile(tileSprite, tileImage) {
+    tileSprite.anims.play(`break`);
+    tileSprite.setSize(0.01, 0.01, false);
+    tileSprite.once(Phaser.Animations.Events.SPRITE_ANIMATION_COMPLETE, () => {
+      console.log("complete");
+      tileSprite.disableBody(true, true);
+    });
   }
-  //
+
   update() {
     if (this.gameOver) {
       this.scene.start(`gameOver`);
+      this.game.input.mouse.releasePointerLock();
     }
 
     this.pointer.rotation = Phaser.Math.Angle.Between(
