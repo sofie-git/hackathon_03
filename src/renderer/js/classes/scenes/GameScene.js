@@ -47,10 +47,10 @@ export default class GameScene extends Phaser.Scene {
 
     this.bg.alpha = 0.94;
     //zorgen dat de achtergrond gescaled wordt naar de volledige breedte en hoogte
-    // this.scaleX = this.cameras.main.width / this.img.width;
-    // this.scaleY = this.cameras.main.height / this.img.height;
-    // this.scale = Math.max(this.scaleX, this.scaleY);
-    // this.img.setScale(this.scale).setScrollFactor(0);
+    this.scaleX = this.cameras.main.width / this.bg.width;
+    this.scaleY = this.cameras.main.height / this.bg.height;
+    this.scale = Math.max(this.scaleX, this.scaleY);
+    this.bg.setScale(this.scale).setScrollFactor(0);
   }
 
   createMovements() {
