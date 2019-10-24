@@ -9,6 +9,7 @@ export default class EndScene extends Phaser.Scene {
   }
   create() {
     //
+    console.log("In the game over scene!");
   }
   update() {
     //
