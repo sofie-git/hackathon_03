@@ -17,6 +17,27 @@ export default class PreloadScene extends Phaser.Scene {
     this.load.image(`ship`, `./assets/img/ship.png`);
     this.load.image(`bg`, `./assets/img/Hexagons-bg.png`);
     //
+    //this.load.image(`lucht`, `./assets/img/lucht.png`);
+    this.load.spritesheet("lucht", "./assets/img/lucht.png", {
+      frameWidth: 50,
+      frameHeight: 34
+    });
+    //this.load.image(`aarde`, `./assets/img/aarde.png`);
+    this.load.spritesheet("aarde", "./assets/img/aarde.png", {
+      frameWidth: 36,
+      frameHeight: 32
+    });
+    // this.load.image(`vuur`, `./assets/img/vuur.png`);
+    this.load.spritesheet("vuur", "./assets/img/vuur.png", {
+      frameWidth: 28,
+      frameHeight: 48
+    });
+    //this.load.image(`water`, `./assets/img/water.png`);
+    this.load.spritesheet("water", "./assets/img/water.png", {
+      frameWidth: 31,
+      frameHeight: 43
+    });
+    //
     this.load.spritesheet("tile", "./assets/img/tile_spritesheet.png", {
       frameWidth: 80,
       frameHeight: 140

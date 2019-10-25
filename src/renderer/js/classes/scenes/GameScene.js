@@ -13,6 +13,11 @@ export default class GameScene extends Phaser.Scene {
 
   init() {
     this.gameOver = false;
+    //
+    this.choseFire = false;
+    this.choseWater = false;
+    this.choseAir = false;
+    this.choseAarde = true;
   }
 
   preload() {}
@@ -26,6 +31,11 @@ export default class GameScene extends Phaser.Scene {
 
     //
     this.cursors = this.input.keyboard.createCursorKeys();
+    this.keyV = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.V);
+    this.keyA = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A);
+    this.keyW = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W);
+    this.keyL = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.L);
+    this.keyB = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.B);
   }
 
   createBackground() {
@@ -241,7 +251,7 @@ export default class GameScene extends Phaser.Scene {
       this
     );
 
-    //schieten met B
+    //schieten met B en het gekozen element
     this.input.keyboard.on(
       "keydown_B",
       function(e) {
@@ -250,7 +260,44 @@ export default class GameScene extends Phaser.Scene {
           .get()
           .setActive(true)
           .setVisible(true);
-        if (this.bullet) {
+        if (this.bullet && this.choseFire === true) {
+          this.bullet.anims.play(`vuur`, true);
+          this.bullet.fire(this.pointer, this.target);
+          this.physics.add.collider(
+            tiles,
+            this.bullet,
+            this.hitTile,
+            null,
+            this
+          );
+        }
+
+        if (this.bullet && this.choseAarde === true) {
+          this.bullet.anims.play(`aarde`, true);
+          this.bullet.fire(this.pointer, this.target);
+          this.physics.add.collider(
+            tiles,
+            this.bullet,
+            this.hitTile,
+            null,
+            this
+          );
+        }
+
+        if (this.bullet && this.choseWater === true) {
+          this.bullet.anims.play(`water`, true);
+          this.bullet.fire(this.pointer, this.target);
+          this.physics.add.collider(
+            tiles,
+            this.bullet,
+            this.hitTile,
+            null,
+            this
+          );
+        }
+
+        if (this.bullet && this.choseAir === true) {
+          this.bullet.anims.play(`lucht`, true);
           this.bullet.fire(this.pointer, this.target);
           this.physics.add.collider(
             tiles,
@@ -281,6 +328,64 @@ export default class GameScene extends Phaser.Scene {
       this.target.x,
       this.target.y
     );
+
+    //kiezen van element
+    if (this.keyV.isDown) {
+      this.choseAarde = false;
+      this.choseAir = false;
+      this.choseFire = true;
+      this.choseWater = false;
+    }
+    if (this.keyA.isDown) {
+      this.choseAarde = true;
+      this.choseAir = false;
+      this.choseFire = false;
+      this.choseWater = false;
+    }
+    if (this.keyW.isDown) {
+      this.choseAarde = false;
+      this.choseAir = false;
+      this.choseFire = false;
+      this.choseWater = true;
+    }
+    if (this.keyL.isDown) {
+      this.choseAarde = false;
+      this.choseAir = true;
+      this.choseFire = false;
+      this.choseWater = false;
+    }
+    //wnr welk element actief is
+    if (
+      this.choseAarde === false &&
+      this.choseAir === false &&
+      this.choseFire === true &&
+      this.choseWater === false
+    ) {
+      this.target.anims.play(`vuur`, true);
+    } else if (
+      this.choseAarde === true &&
+      this.choseAir === false &&
+      this.choseFire === false &&
+      this.choseWater === false
+    ) {
+      this.target.anims.play(`aarde`, true);
+    } else if (
+      this.choseAarde === false &&
+      this.choseAir === true &&
+      this.choseFire === false &&
+      this.choseWater === false
+    ) {
+      this.target.anims.play(`lucht`, true);
+    } else if (
+      this.choseAarde === false &&
+      this.choseAir === false &&
+      this.choseFire === false &&
+      this.choseWater === true
+    ) {
+      this.target.anims.play(`water`, true);
+    } else {
+      console.log("fail");
+    }
 
     this.pointerConstrains();
   }

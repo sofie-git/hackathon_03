@@ -1,17 +1,57 @@
 export default class Bullet extends Phaser.Physics.Arcade.Sprite {
   constructor(scene, x, y) {
-    super(scene, x, y, `bullet`);
+    super(scene, x, y, [`aarde`, `water`, `vuur`, `lucht`]);
     //
     scene.add.existing(this);
     scene.physics.add.existing(this);
     //
-    this.setScale(5);
+    this.setScale(2);
     //
     this.speed = 1;
     this.born = 0;
     this.direction = 0;
     this.xSpeed = 0;
     this.ySpeed = 0;
+    //
+    this.createChoice();
+  }
+
+  createChoice() {
+    this.scene.anims.create({
+      key: "aarde",
+      frames: this.scene.anims.generateFrameNumbers(`aarde`, {
+        start: 1,
+        end: 2
+      }),
+      frameRate: 10
+    });
+
+    this.scene.anims.create({
+      key: "water",
+      frames: this.scene.anims.generateFrameNumbers(`water`, {
+        start: 1,
+        end: 2
+      }),
+      frameRate: 10
+    });
+
+    this.scene.anims.create({
+      key: "vuur",
+      frames: this.scene.anims.generateFrameNumbers(`vuur`, {
+        start: 1,
+        end: 2
+      }),
+      frameRate: 10
+    });
+
+    this.scene.anims.create({
+      key: "lucht",
+      frames: this.scene.anims.generateFrameNumbers(`lucht`, {
+        start: 1,
+        end: 2
+      }),
+      frameRate: 10
+    });
   }
 
   fire(shooter, target) {
