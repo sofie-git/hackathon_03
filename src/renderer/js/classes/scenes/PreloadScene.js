@@ -16,6 +16,8 @@ class PreloadScene extends Phaser.Scene {
     this.load.image(`bullet`, `./static/assets/img/bullet.png`);
     this.load.image(`hand`, `./static/assets/img/hand.png`);
     this.load.image(`bg`, `./static/assets/img/Hexagons-bg.png`);
+    this.load.image(`neon`, `./static/assets/img/neon.png`);
+    this.load.image(`active`, `./static/assets/img/active.png`);
     //
     //this.load.image(`lucht`, `./static/assets/img/lucht.png`);
     this.load.spritesheet("lucht", "./static/assets/img/lucht.png", {

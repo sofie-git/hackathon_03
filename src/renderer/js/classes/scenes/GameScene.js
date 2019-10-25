@@ -72,6 +72,8 @@ class GameScene extends Phaser.Scene {
       .setDepth(-1);
 
     this.bg.alpha = 0.92;
+
+    this.neon = this.add.image(this.sys.game.config.width / 2, 270, `neon`);
     //zorgen dat de achtergrond gescaled wordt naar de volledige breedte en hoogte
     // this.scaleX = this.cameras.main.width / this.bg.width;
     // this.scaleY = this.cameras.main.height / this.bg.height;
@@ -83,7 +85,7 @@ class GameScene extends Phaser.Scene {
     this.pointer = new Pointer(
       this,
       this.sys.game.config.width / 2 + 50,
-      this.sys.game.config.height / 2 + 10
+      this.sys.game.config.height / 2 + 70
     ).setDepth(1);
     this.pointer.body.allowGravity = false;
   }
@@ -107,28 +109,28 @@ class GameScene extends Phaser.Scene {
     this.fire = new Bullet(
       this,
       this.sys.game.config.width / 2 - 110,
-      this.sys.game.config.height / 2 - 220
+      this.sys.game.config.height / 2 - 140
     );
     this.fire.anims.play(`vuur`, true);
     //
     this.water = new Bullet(
       this,
       this.sys.game.config.width / 2,
-      this.sys.game.config.height / 2 - 220
+      this.sys.game.config.height / 2 - 140
     );
     this.water.anims.play(`water`, true);
     //
     this.aarde = new Bullet(
       this,
       this.sys.game.config.width / 2 + 110,
-      this.sys.game.config.height / 2 - 220
+      this.sys.game.config.height / 2 - 140
     );
     this.aarde.anims.play(`aarde`, true);
     //
     this.lucht = new Bullet(
       this,
       this.sys.game.config.width / 2 + 220,
-      this.sys.game.config.height / 2 - 220
+      this.sys.game.config.height / 2 - 140
     );
     this.lucht.anims.play(`lucht`, true);
   }
@@ -281,7 +283,7 @@ class GameScene extends Phaser.Scene {
     //   },
     //   this
     // );
-    //
+
     // this.input.on(
     //   "pointermove",
     //   function(e) {
@@ -293,7 +295,7 @@ class GameScene extends Phaser.Scene {
     //   },
     //   this
     // );
-    // Exit pointer lock when Q is pressed.
+    // //  Exit pointer lock when Q is pressed.
     // this.input.keyboard.on(
     //   "keydown_Q",
     //   function(e) {
@@ -314,6 +316,7 @@ class GameScene extends Phaser.Scene {
           .get()
           .setActive(true)
           .setVisible(true);
+        this.bullet.setSize(40, 40, false);
         if (this.bullet && this.choseFire === true) {
           this.bullet.anims.play(`vuur`, true);
           this.bullet.fire(this.pointer, this.target);
@@ -414,6 +417,7 @@ class GameScene extends Phaser.Scene {
       this.choseWater = false;
     }
     //wnr welk element actief is
+
     if (
       this.choseAarde === false &&
       this.choseAir === false &&
