@@ -42,6 +42,15 @@ export default class PreloadScene extends Phaser.Scene {
       frameWidth: 80,
       frameHeight: 140
     });
+    //
+    this.load.spritesheet(
+      "breakdownWall",
+      "./assets/img/wall_spritesheet.png",
+      {
+        frameWidth: 3840,
+        frameHeight: 1080
+      }
+    );
   }
 
   onProgress(value) {
