@@ -14,28 +14,28 @@ class PreloadScene extends Phaser.Scene {
     //
     this.load.image(`baksteen`, `./static/assets/img/bak.jpg`);
     this.load.image(`bullet`, `./static/assets/img/bullet.png`);
-    this.load.image(`ship`, `./static/assets/img/ship.png`);
+    this.load.image(`hand`, `./static/assets/img/hand.png`);
     this.load.image(`bg`, `./static/assets/img/Hexagons-bg.png`);
     //
     //this.load.image(`lucht`, `./static/assets/img/lucht.png`);
     this.load.spritesheet("lucht", "./static/assets/img/lucht.png", {
-      frameWidth: 50,
-      frameHeight: 34
+      frameWidth: 60,
+      frameHeight: 60
     });
     //this.load.image(`aarde`, `./static/assets/img/aarde.png`);
     this.load.spritesheet("aarde", "./static/assets/img/aarde.png", {
-      frameWidth: 36,
-      frameHeight: 32
+      frameWidth: 60,
+      frameHeight: 60
     });
     // this.load.image(`vuur`, `./static/assets/img/vuur.png`);
     this.load.spritesheet("vuur", "./static/assets/img/vuur.png", {
-      frameWidth: 28,
-      frameHeight: 48
+      frameWidth: 60,
+      frameHeight: 60
     });
     //this.load.image(`water`, `./static/assets/img/water.png`);
     this.load.spritesheet("water", "./static/assets/img/water.png", {
-      frameWidth: 31,
-      frameHeight: 43
+      frameWidth: 60,
+      frameHeight: 60
     });
     //
     this.load.spritesheet("tile", "./static/assets/img/tile_spritesheet.png", {

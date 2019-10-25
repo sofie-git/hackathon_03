@@ -14,9 +14,10 @@ class Wall extends Phaser.Physics.Arcade.Sprite {
     this.scene.anims.create({
       key: `breakWall`,
       frames: this.scene.anims.generateFrameNumbers(`breakdownWall`, {
-        start: 1,
-        end: 1
+        start: 0,
+        end: 14
       }),
+      repeat: 1,
       frameRate: 10
     });
   }

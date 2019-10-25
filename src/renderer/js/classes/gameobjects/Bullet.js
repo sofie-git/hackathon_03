@@ -5,7 +5,7 @@ class Bullet extends Phaser.Physics.Arcade.Sprite {
     scene.add.existing(this);
     scene.physics.add.existing(this);
     //
-    this.setScale(2);
+    this.setScale(1.5);
     //
     this.speed = 1;
     this.born = 0;
@@ -20,8 +20,8 @@ class Bullet extends Phaser.Physics.Arcade.Sprite {
     this.scene.anims.create({
       key: "aarde",
       frames: this.scene.anims.generateFrameNumbers(`aarde`, {
-        start: 1,
-        end: 2
+        start: 0,
+        end: 40
       }),
       frameRate: 10
     });
@@ -29,8 +29,8 @@ class Bullet extends Phaser.Physics.Arcade.Sprite {
     this.scene.anims.create({
       key: "water",
       frames: this.scene.anims.generateFrameNumbers(`water`, {
-        start: 1,
-        end: 2
+        start: 0,
+        end: 40
       }),
       frameRate: 10
     });
@@ -38,8 +38,8 @@ class Bullet extends Phaser.Physics.Arcade.Sprite {
     this.scene.anims.create({
       key: "vuur",
       frames: this.scene.anims.generateFrameNumbers(`vuur`, {
-        start: 1,
-        end: 2
+        start: 0,
+        end: 40
       }),
       frameRate: 10
     });
@@ -47,8 +47,8 @@ class Bullet extends Phaser.Physics.Arcade.Sprite {
     this.scene.anims.create({
       key: "lucht",
       frames: this.scene.anims.generateFrameNumbers(`lucht`, {
-        start: 1,
-        end: 2
+        start: 0,
+        end: 40
       }),
       frameRate: 10
     });
