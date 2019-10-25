@@ -1,5 +1,5 @@
-import Wall from "../gameobjects/Wall";
-export default class EndScene extends Phaser.Scene {
+const Wall = require("../gameobjects/Wall.js");
+class EndScene extends Phaser.Scene {
   constructor() {
     super({
       key: `gameOver`
@@ -21,3 +21,5 @@ export default class EndScene extends Phaser.Scene {
     this.wall.anims.play(`breakWall`, true);
   }
 }
+
+module.exports = EndScene;

@@ -1,4 +1,4 @@
-export default class Tile extends Phaser.Physics.Arcade.Sprite {
+class Tile extends Phaser.Physics.Arcade.Sprite {
   constructor(scene, x, y, id) {
     super(scene, x, y, `tile`);
     //
@@ -23,3 +23,5 @@ export default class Tile extends Phaser.Physics.Arcade.Sprite {
     });
   }
 }
+
+module.exports = Tile;

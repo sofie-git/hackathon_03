@@ -1,4 +1,4 @@
-export default class Bullet extends Phaser.Physics.Arcade.Sprite {
+class Bullet extends Phaser.Physics.Arcade.Sprite {
   constructor(scene, x, y) {
     super(scene, x, y, [`aarde`, `water`, `vuur`, `lucht`]);
     //
@@ -78,3 +78,5 @@ export default class Bullet extends Phaser.Physics.Arcade.Sprite {
     this.born += delta;
   }
 }
+
+module.exports = Bullet;

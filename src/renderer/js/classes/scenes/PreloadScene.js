@@ -1,4 +1,4 @@
-export default class PreloadScene extends Phaser.Scene {
+class PreloadScene extends Phaser.Scene {
   constructor() {
     super({
       key: `preload`
@@ -12,40 +12,40 @@ export default class PreloadScene extends Phaser.Scene {
     this.load.on(`progress`, this.onProgress, this);
     this.load.on(`complete`, this.onComplete, this);
     //
-    this.load.image(`baksteen`, `./assets/img/bak.jpg`);
-    this.load.image(`bullet`, `./assets/img/bullet.png`);
-    this.load.image(`ship`, `./assets/img/ship.png`);
-    this.load.image(`bg`, `./assets/img/Hexagons-bg.png`);
+    this.load.image(`baksteen`, `./static/assets/img/bak.jpg`);
+    this.load.image(`bullet`, `./static/assets/img/bullet.png`);
+    this.load.image(`ship`, `./static/assets/img/ship.png`);
+    this.load.image(`bg`, `./static/assets/img/Hexagons-bg.png`);
     //
-    //this.load.image(`lucht`, `./assets/img/lucht.png`);
-    this.load.spritesheet("lucht", "./assets/img/lucht.png", {
+    //this.load.image(`lucht`, `./static/assets/img/lucht.png`);
+    this.load.spritesheet("lucht", "./static/assets/img/lucht.png", {
       frameWidth: 50,
       frameHeight: 34
     });
-    //this.load.image(`aarde`, `./assets/img/aarde.png`);
-    this.load.spritesheet("aarde", "./assets/img/aarde.png", {
+    //this.load.image(`aarde`, `./static/assets/img/aarde.png`);
+    this.load.spritesheet("aarde", "./static/assets/img/aarde.png", {
       frameWidth: 36,
       frameHeight: 32
     });
-    // this.load.image(`vuur`, `./assets/img/vuur.png`);
-    this.load.spritesheet("vuur", "./assets/img/vuur.png", {
+    // this.load.image(`vuur`, `./static/assets/img/vuur.png`);
+    this.load.spritesheet("vuur", "./static/assets/img/vuur.png", {
       frameWidth: 28,
       frameHeight: 48
     });
-    //this.load.image(`water`, `./assets/img/water.png`);
-    this.load.spritesheet("water", "./assets/img/water.png", {
+    //this.load.image(`water`, `./static/assets/img/water.png`);
+    this.load.spritesheet("water", "./static/assets/img/water.png", {
       frameWidth: 31,
       frameHeight: 43
     });
     //
-    this.load.spritesheet("tile", "./assets/img/tile_spritesheet.png", {
+    this.load.spritesheet("tile", "./static/assets/img/tile_spritesheet.png", {
       frameWidth: 80,
       frameHeight: 140
     });
     //
     this.load.spritesheet(
       "breakdownWall",
-      "./assets/img/wall_spritesheet.png",
+      "./static/assets/img/wall_spritesheet.png",
       {
         frameWidth: 3840,
         frameHeight: 1080
@@ -72,3 +72,5 @@ export default class PreloadScene extends Phaser.Scene {
   create() {}
   update() {}
 }
+
+module.exports = PreloadScene;

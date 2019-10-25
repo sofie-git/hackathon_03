@@ -1,4 +1,4 @@
-export default class Pointer extends Phaser.Physics.Arcade.Sprite {
+class Pointer extends Phaser.Physics.Arcade.Sprite {
   constructor(scene, x, y) {
     super(scene, x, y, `ship`);
     //
@@ -9,3 +9,5 @@ export default class Pointer extends Phaser.Physics.Arcade.Sprite {
     //
   }
 }
+
+module.exports = Pointer;

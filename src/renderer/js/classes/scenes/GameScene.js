@@ -1,9 +1,11 @@
-import Bullet from "../gameobjects/Bullet";
-import Tile from "../gameobjects/Tile";
-import Pointer from "../gameobjects/Pointer";
+const Bullet = require("../gameobjects/Bullet.js");
+const Tile = require("../gameobjects/Tile.js");
+const Pointer = require("../gameobjects/Pointer.js");
+
+const { map } = require("../../functions/utils.js");
 
 const tiles = [];
-export default class GameScene extends Phaser.Scene {
+class GameScene extends Phaser.Scene {
   constructor() {
     super({
       key: `game`
@@ -18,6 +20,10 @@ export default class GameScene extends Phaser.Scene {
     this.choseWater = false;
     this.choseAir = false;
     this.choseAarde = true;
+
+    this.targetAngle = 0;
+
+    this.handleOscMessage = this.handleOscMessage.bind(this);
   }
 
   preload() {}
@@ -36,6 +42,23 @@ export default class GameScene extends Phaser.Scene {
     this.keyW = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W);
     this.keyL = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.L);
     this.keyB = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.B);
+
+    window.app.udpPort.on("message", this.handleOscMessage);
+  }
+
+  handleOscMessage(oscMessage) {
+    if (oscMessage.address === "/wii/1/accel/pry") {
+      const pitch = oscMessage.args[0];
+      const roll = oscMessage.args[1];
+      const yaw = oscMessage.args[2];
+      const rotation = oscMessage.args[3];
+
+      let adjustment = map(roll, 0, 1, -1, 1);
+      if (adjustment < -1) adjustment = -1;
+      if (adjustment > 1) adjustment = 1;
+
+      this.targetAngle += adjustment;
+    }
   }
 
   createBackground() {
@@ -220,36 +243,36 @@ export default class GameScene extends Phaser.Scene {
   }
 
   createMovements() {
-    this.input.on(
-      "pointerdown",
-      function(e) {
-        this.game.input.mouse.requestPointerLock();
-      },
-      this
-    );
+    // this.input.on(
+    //   "pointerdown",
+    //   function(e) {
+    //     this.game.input.mouse.requestPointerLock();
+    //   },
+    //   this
+    // );
     //
-    this.input.on(
-      "pointermove",
-      function(e) {
-        if (this.input.mouse.locked) {
-          // console.log(e.movementX);
-          this.target.x += e.movementX;
-          this.target.y += e.movementY;
-        }
-      },
-      this
-    );
+    // this.input.on(
+    //   "pointermove",
+    //   function(e) {
+    //     if (this.input.mouse.locked) {
+    //       // console.log(e.movementX);
+    //       this.target.x += e.movementX;
+    //       this.target.y += e.movementY;
+    //     }
+    //   },
+    //   this
+    // );
     // Exit pointer lock when Q is pressed.
-    this.input.keyboard.on(
-      "keydown_Q",
-      function(e) {
-        if (this.game.input.mouse.locked) {
-          this.game.input.mouse.releasePointerLock();
-        }
-      },
-      0,
-      this
-    );
+    // this.input.keyboard.on(
+    //   "keydown_Q",
+    //   function(e) {
+    //     if (this.game.input.mouse.locked) {
+    //       this.game.input.mouse.releasePointerLock();
+    //     }
+    //   },
+    //   0,
+    //   this
+    // );
 
     //schieten met B en het gekozen element
     this.input.keyboard.on(
@@ -313,6 +336,10 @@ export default class GameScene extends Phaser.Scene {
   }
 
   update() {
+    const angleRads = (this.targetAngle * Math.PI) / 180;
+    this.target.x = this.pointer.x + Math.cos(angleRads) * 100;
+    this.target.y = this.pointer.y + Math.sin(angleRads) * 100;
+
     if (this.gameOver) {
       this.game.input.mouse.releasePointerLock();
       this.scene.start(`gameOver`);
@@ -322,12 +349,14 @@ export default class GameScene extends Phaser.Scene {
       this.gameOver = true;
     }
 
-    this.pointer.rotation = Phaser.Math.Angle.Between(
-      this.pointer.x,
-      this.pointer.y,
-      this.target.x,
-      this.target.y
-    );
+    this.pointer.rotation =
+      Math.PI / 2 +
+      Phaser.Math.Angle.Between(
+        this.pointer.x,
+        this.pointer.y,
+        this.target.x,
+        this.target.y
+      );
 
     //kiezen van element
     if (this.keyV.isDown) {
@@ -389,4 +418,12 @@ export default class GameScene extends Phaser.Scene {
 
     this.pointerConstrains();
   }
+
+  shutdown() {
+    super.shutdown();
+    console.log("[GameScene] shutdown");
+    window.app.udpPort.off("message", this.handleOscMessage);
+  }
 }
+
+module.exports = GameScene;

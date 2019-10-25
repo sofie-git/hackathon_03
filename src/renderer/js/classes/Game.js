@@ -1,7 +1,7 @@
-import PreloadScene from "./scenes/PreloadScene.js";
-import BootScene from "./scenes/BootScene.js";
-import GameScene from "./scenes/GameScene.js";
-import EndScene from "./scenes/EndScene.js";
+const PreloadScene = require("./scenes/PreloadScene.js");
+const BootScene = require("./scenes/BootScene.js");
+const GameScene = require("./scenes/GameScene.js");
+const EndScene = require("./scenes/EndScene.js");
 class Game extends Phaser.Game {
   constructor() {
     super({
@@ -25,4 +25,5 @@ class Game extends Phaser.Game {
   create() {}
   update() {}
 }
-export default Game;
+
+module.exports = Game;

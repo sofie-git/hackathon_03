@@ -1,9 +1,7 @@
-import { inAppPurchase } from "electron";
-
 // naar preloadscene
 // illustratiefilmpje tonen
 
-export default class BootScene extends Phaser.Scene {
+class BootScene extends Phaser.Scene {
   constructor() {
     super({
       key: `boot`
@@ -28,3 +26,5 @@ export default class BootScene extends Phaser.Scene {
 
   update() {}
 }
+
+module.exports = BootScene;

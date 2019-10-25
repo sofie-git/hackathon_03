@@ -1,4 +1,4 @@
-export default class Wall extends Phaser.Physics.Arcade.Sprite {
+class Wall extends Phaser.Physics.Arcade.Sprite {
   constructor(scene, x, y) {
     super(scene, x, y, `breakdownWall`);
     //
@@ -21,3 +21,5 @@ export default class Wall extends Phaser.Physics.Arcade.Sprite {
     });
   }
 }
+
+module.exports = Wall;

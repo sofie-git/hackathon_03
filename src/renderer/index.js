@@ -1,12 +1,20 @@
-import "./style.css";
-import "phaser";
-import Game from "./js/classes/Game.js";
+const Game = require("./js/classes/Game.js");
+
+const osc = require("osc");
 
 {
   const init = () => {
     console.log(`GAME START`);
 
-    new Game();
+    window.app = {};
+    window.app.game = new Game();
+
+    window.app.udpPort = new osc.UDPPort({
+      localAddress: "0.0.0.0",
+      localPort: 1234
+    });
+
+    window.app.udpPort.open();
   };
   init();
 }
