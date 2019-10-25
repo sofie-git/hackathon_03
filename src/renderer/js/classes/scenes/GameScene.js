@@ -53,9 +53,9 @@ class GameScene extends Phaser.Scene {
       const yaw = oscMessage.args[2];
       const rotation = oscMessage.args[3];
 
-      let adjustment = map(roll, 0, 1, -1, 1);
-      if (adjustment < -1) adjustment = -1;
-      if (adjustment > 1) adjustment = 1;
+      let adjustment = map(roll, 0, 1.3, -1.3, 1.3);
+      if (adjustment < -1) adjustment = -1.3;
+      if (adjustment > 1.3) adjustment = 1.3;
 
       this.targetAngle += adjustment;
     }
