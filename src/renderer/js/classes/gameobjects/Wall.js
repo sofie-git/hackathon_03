@@ -6,7 +6,7 @@ class Wall extends Phaser.Physics.Arcade.Sprite {
     scene.add.existing(this);
     scene.physics.add.existing(this);
     //
-    this.setScale(1);
+    this.setScale(4);
     //
     this.createAnimations();
   }
@@ -18,7 +18,7 @@ class Wall extends Phaser.Physics.Arcade.Sprite {
         end: 14
       }),
       repeat: 1,
-      frameRate: 10
+      frameRate: 5
     });
   }
 }

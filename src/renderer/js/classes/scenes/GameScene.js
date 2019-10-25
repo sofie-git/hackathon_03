@@ -20,9 +20,9 @@ class GameScene extends Phaser.Scene {
     this.choseWater = false;
     this.choseAir = false;
     this.choseAarde = true;
-
+    //
     this.targetAngle = 0;
-
+    //
     this.handleOscMessage = this.handleOscMessage.bind(this);
   }
 
@@ -34,6 +34,7 @@ class GameScene extends Phaser.Scene {
     this.createMovements();
     this.createTile();
     this.createTarget();
+    this.createChosenItem();
 
     //
     this.cursors = this.input.keyboard.createCursorKeys();
@@ -100,6 +101,36 @@ class GameScene extends Phaser.Scene {
       classType: Bullet,
       runChildUpdate: true
     });
+  }
+
+  createChosenItem() {
+    this.fire = new Bullet(
+      this,
+      this.sys.game.config.width / 2 - 110,
+      this.sys.game.config.height / 2 - 220
+    );
+    this.fire.anims.play(`vuur`, true);
+    //
+    this.water = new Bullet(
+      this,
+      this.sys.game.config.width / 2,
+      this.sys.game.config.height / 2 - 220
+    );
+    this.water.anims.play(`water`, true);
+    //
+    this.aarde = new Bullet(
+      this,
+      this.sys.game.config.width / 2 + 110,
+      this.sys.game.config.height / 2 - 220
+    );
+    this.aarde.anims.play(`aarde`, true);
+    //
+    this.lucht = new Bullet(
+      this,
+      this.sys.game.config.width / 2 + 220,
+      this.sys.game.config.height / 2 - 220
+    );
+    this.lucht.anims.play(`lucht`, true);
   }
 
   createTile() {
@@ -341,7 +372,6 @@ class GameScene extends Phaser.Scene {
     this.target.y = this.pointer.y + Math.sin(angleRads) * 100;
 
     if (this.gameOver) {
-      this.game.input.mouse.releasePointerLock();
       this.scene.start(`gameOver`);
     }
 

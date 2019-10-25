@@ -9,17 +9,9 @@ class EndScene extends Phaser.Scene {
     //
   }
   create() {
-    //
-    console.log("In the game over scene!");
-    this.wall = new Wall(
-      this,
-      this.sys.game.config.width / 2,
-      this.sys.game.config.height / 2
-    );
+    console.log("endscene");
   }
-  update() {
-    this.wall.anims.play(`breakWall`, true);
-  }
+  update() {}
 }
 
 module.exports = EndScene;

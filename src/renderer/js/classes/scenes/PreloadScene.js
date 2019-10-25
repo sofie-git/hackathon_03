@@ -45,10 +45,10 @@ class PreloadScene extends Phaser.Scene {
     //
     this.load.spritesheet(
       "breakdownWall",
-      "./static/assets/img/wall_spritesheet.png",
+      "./static/assets/img/wall_sprite02.png",
       {
-        frameWidth: 3840,
-        frameHeight: 1080
+        frameWidth: 960,
+        frameHeight: 270
       }
     );
   }
