@@ -37,7 +37,7 @@ export default class GameScene extends Phaser.Scene {
       )
       .setDepth(-1);
 
-    this.bg.alpha = 0.94;
+    this.bg.alpha = 0.92;
     //zorgen dat de achtergrond gescaled wordt naar de volledige breedte en hoogte
     // this.scaleX = this.cameras.main.width / this.bg.width;
     // this.scaleY = this.cameras.main.height / this.bg.height;
