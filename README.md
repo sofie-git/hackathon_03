@@ -4,7 +4,8 @@ Een groepswerk van Ayko Desmedt, Eva Denys, Robbe Buyle en Sofie Patoor voor het
 
 ## Concept
 
-Elements. De gebruiker schiet het gekozen element af door met het wii-bakje te zwaaien. Als het element wordt afgevuurd, brokkelt de muur beetje bij beetje af, zodat er op het einde een nieuwe wereld word ontdekt. 
+Elements. Breek de muur van de toekomst en ontdek het verleden. 
+De gebruiker kiest op het wii-bakje één van de vier elementen en vuurt dit af door op de b-knop te drukken. Het element richten doe je door met het bakje te draaien om de x-as. Er zijn verschillende blokken opgelicht uit de muur, die je moet proberen raken. Deze verbrokkelen dan tot niets. Als alle blokken gebroken zijn, brokkelt de hele muur af en kom je te weten waarvoor Hangar K vroeger diende.
 
 ## Praktisch
 
