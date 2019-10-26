@@ -14,7 +14,7 @@ class GameScene extends Phaser.Scene {
   }
 
   init() {
-    this.gameOver = true;
+    this.gameOver = false;
     //
     this.choseFire = false;
     this.choseWater = false;
