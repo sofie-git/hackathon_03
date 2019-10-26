@@ -73,7 +73,21 @@ class GameScene extends Phaser.Scene {
 
     this.bg.alpha = 0.92;
 
-    this.neon = this.add.image(this.sys.game.config.width / 2, 270, `neon`);
+    this.neon = this.add.image(
+      this.sys.game.config.width / 2 + 15,
+      270,
+      `neon`
+    );
+
+    this.text = this.add.text(
+      this.sys.game.config.width / 2 + 40,
+      290,
+      "Elements",
+      {
+        font: "24px mylodon",
+        fill: "#FFFFFF"
+      }
+    );
     //zorgen dat de achtergrond gescaled wordt naar de volledige breedte en hoogte
     // this.scaleX = this.cameras.main.width / this.bg.width;
     // this.scaleY = this.cameras.main.height / this.bg.height;
@@ -108,31 +122,27 @@ class GameScene extends Phaser.Scene {
   createChosenItem() {
     this.fire = new Bullet(
       this,
-      this.sys.game.config.width / 2 - 110,
+      this.sys.game.config.width / 2 - 100,
       this.sys.game.config.height / 2 - 140
     );
-    this.fire.anims.play(`vuur`, true);
     //
     this.water = new Bullet(
       this,
-      this.sys.game.config.width / 2,
+      this.sys.game.config.width / 2 + 10,
       this.sys.game.config.height / 2 - 140
     );
-    this.water.anims.play(`water`, true);
     //
     this.aarde = new Bullet(
       this,
-      this.sys.game.config.width / 2 + 110,
+      this.sys.game.config.width / 2 + 120,
       this.sys.game.config.height / 2 - 140
     );
-    this.aarde.anims.play(`aarde`, true);
     //
     this.lucht = new Bullet(
       this,
-      this.sys.game.config.width / 2 + 220,
+      this.sys.game.config.width / 2 + 240,
       this.sys.game.config.height / 2 - 140
     );
-    this.lucht.anims.play(`lucht`, true);
   }
 
   createTile() {
@@ -390,7 +400,11 @@ class GameScene extends Phaser.Scene {
         this.target.x,
         this.target.y
       );
-
+    //
+    this.lucht.anims.play(`lucht`, true);
+    this.aarde.anims.play(`aarde`, true);
+    this.water.anims.play(`water`, true);
+    this.fire.anims.play(`vuur`, true);
     //kiezen van element
     if (this.keyV.isDown) {
       this.choseAarde = false;
@@ -417,7 +431,6 @@ class GameScene extends Phaser.Scene {
       this.choseWater = false;
     }
     //wnr welk element actief is
-
     if (
       this.choseAarde === false &&
       this.choseAir === false &&
@@ -425,6 +438,7 @@ class GameScene extends Phaser.Scene {
       this.choseWater === false
     ) {
       this.target.anims.play(`vuur`, true);
+      this.fire.anims.play(`vuurActief`, true);
     } else if (
       this.choseAarde === true &&
       this.choseAir === false &&
@@ -432,6 +446,7 @@ class GameScene extends Phaser.Scene {
       this.choseWater === false
     ) {
       this.target.anims.play(`aarde`, true);
+      this.aarde.anims.play(`aardeActief`, true);
     } else if (
       this.choseAarde === false &&
       this.choseAir === true &&
@@ -439,6 +454,7 @@ class GameScene extends Phaser.Scene {
       this.choseWater === false
     ) {
       this.target.anims.play(`lucht`, true);
+      this.lucht.anims.play(`luchtActief`, true);
     } else if (
       this.choseAarde === false &&
       this.choseAir === false &&
@@ -446,6 +462,7 @@ class GameScene extends Phaser.Scene {
       this.choseWater === true
     ) {
       this.target.anims.play(`water`, true);
+      this.water.anims.play(`waterActief`, true);
     } else {
       console.log("fail");
     }

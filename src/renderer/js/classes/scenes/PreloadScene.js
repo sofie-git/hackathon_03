@@ -40,6 +40,35 @@ class PreloadScene extends Phaser.Scene {
       frameHeight: 60
     });
     //
+    this.load.spritesheet(
+      "waterActief",
+      "./static/assets/img/waterActief.png",
+      {
+        frameWidth: 78,
+        frameHeight: 76
+      }
+    );
+    this.load.spritesheet(
+      "aardeActief",
+      "./static/assets/img/aardeActief.png",
+      {
+        frameWidth: 78,
+        frameHeight: 76
+      }
+    );
+    this.load.spritesheet(
+      "luchtActief",
+      "./static/assets/img/luchtActief.png",
+      {
+        frameWidth: 78,
+        frameHeight: 76
+      }
+    );
+    this.load.spritesheet("vuurActief", "./static/assets/img/vuurActief.png", {
+      frameWidth: 78,
+      frameHeight: 76
+    });
+    //
     this.load.spritesheet("tile", "./static/assets/img/tile_spritesheet.png", {
       frameWidth: 80,
       frameHeight: 140

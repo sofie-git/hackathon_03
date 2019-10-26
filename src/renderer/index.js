@@ -1,5 +1,4 @@
 const Game = require("./js/classes/Game.js");
-
 const osc = require("osc");
 
 {

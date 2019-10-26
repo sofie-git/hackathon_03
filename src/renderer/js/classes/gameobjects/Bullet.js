@@ -52,6 +52,42 @@ class Bullet extends Phaser.Physics.Arcade.Sprite {
       }),
       frameRate: 10
     });
+    //
+    this.scene.anims.create({
+      key: "aardeActief",
+      frames: this.scene.anims.generateFrameNumbers(`aardeActief`, {
+        start: 0,
+        end: 40
+      }),
+      frameRate: 10
+    });
+
+    this.scene.anims.create({
+      key: "waterActief",
+      frames: this.scene.anims.generateFrameNumbers(`waterActief`, {
+        start: 0,
+        end: 40
+      }),
+      frameRate: 10
+    });
+
+    this.scene.anims.create({
+      key: "vuurActief",
+      frames: this.scene.anims.generateFrameNumbers(`vuurActief`, {
+        start: 0,
+        end: 40
+      }),
+      frameRate: 10
+    });
+
+    this.scene.anims.create({
+      key: "luchtActief",
+      frames: this.scene.anims.generateFrameNumbers(`luchtActief`, {
+        start: 0,
+        end: 40
+      }),
+      frameRate: 10
+    });
   }
 
   fire(shooter, target) {

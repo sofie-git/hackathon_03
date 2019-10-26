@@ -1,5 +1,5 @@
 @import './css/reset.css';
-@import './css/vars.css';
+
 
 
 html {
@@ -23,3 +23,11 @@ body {
   background-color: black;
 }
 
+@font-face {
+  font-family: 'mylodon';
+  src:
+    url(../../static/assets/fonts/Mylodon-Light.woff) format(woff),
+    url(../../static/assets/fonts/Mylodon-Light.ttf) format(ttf);
+  font-weight: normal;
+  font-style: normal;
+}
