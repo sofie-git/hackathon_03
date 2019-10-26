@@ -63,6 +63,14 @@ class GameScene extends Phaser.Scene {
   }
 
   createBackground() {
+    this.sepia = this.add
+      .image(
+        this.sys.game.config.width / 2,
+        this.sys.game.config.height / 2,
+        `sepia`
+      )
+      .setDepth(-2);
+
     this.bg = this.add
       .image(
         this.sys.game.config.width / 2,
