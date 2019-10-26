@@ -29,6 +29,7 @@ class GameScene extends Phaser.Scene {
   preload() {}
   create() {
     this.createBackground();
+    this.createThemeSound();
     this.createBullet();
     this.createPointer();
     this.createMovements();
@@ -88,11 +89,21 @@ class GameScene extends Phaser.Scene {
         fill: "#FFFFFF"
       }
     );
-    //zorgen dat de achtergrond gescaled wordt naar de volledige breedte en hoogte
-    // this.scaleX = this.cameras.main.width / this.bg.width;
-    // this.scaleY = this.cameras.main.height / this.bg.height;
-    // this.scale = Math.max(this.scaleX, this.scaleY);
-    // this.bg.setScale(this.scale).setScrollFactor(0);
+  }
+
+  createThemeSound() {
+    this.theme = this.sound.add("theme");
+    this.theme.play();
+
+    this.timedEvent = this.time.addEvent({
+      delay: 122000,
+      callback: this.themeRepeat,
+      callbackScope: this,
+      loop: true
+    });
+  }
+  themeRepeat() {
+    this.theme.play();
   }
 
   createPointer() {
@@ -260,7 +271,7 @@ class GameScene extends Phaser.Scene {
           tileSprite.destroy();
           let teller = 0;
           tiles.forEach(tile => {
-            console.log(tiles);
+            // console.log(tiles);
             if (tile.index === tileSprite.index) {
               tiles.splice(teller, 1);
             }
@@ -327,6 +338,10 @@ class GameScene extends Phaser.Scene {
           .setActive(true)
           .setVisible(true);
         this.bullet.setSize(40, 40, false);
+        //
+        const shoot = this.sound.add("shoot");
+        shoot.play();
+        //
         if (this.bullet && this.choseFire === true) {
           this.bullet.anims.play(`vuur`, true);
           this.bullet.fire(this.pointer, this.target);

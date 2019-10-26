@@ -105,6 +105,7 @@ class Bullet extends Phaser.Physics.Arcade.Sprite {
 
     this.rotation = shooter.rotation; // bullet image roteren op zelfde angle als shooter
     this.born = 0; // tijd sinds eerste bullet is afgevuurd
+    //
   }
 
   //bullet updaten elke cycle
@@ -112,6 +113,10 @@ class Bullet extends Phaser.Physics.Arcade.Sprite {
     this.x += this.xSpeed * delta;
     this.y += this.ySpeed * delta;
     this.born += delta;
+    if (this.x >= 3840 || this.y >= 1080) {
+      console.log("bullet destroyed");
+      this.destroy();
+    }
   }
 }
 

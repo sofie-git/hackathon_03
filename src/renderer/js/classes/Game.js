@@ -16,6 +16,9 @@ class Game extends Phaser.Game {
           gravity: { y: 0 },
           debug: true
         }
+      },
+      audio: {
+        disableWebAudio: true
       }
     });
     console.log(`Constructor Game class`);

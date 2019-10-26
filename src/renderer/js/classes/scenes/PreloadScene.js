@@ -82,6 +82,16 @@ class PreloadScene extends Phaser.Scene {
         frameHeight: 270
       }
     );
+
+    //audio
+    this.load.audio("theme", [
+      "./static/assets/audio/scifi_music.ogg",
+      "./static/assets/audio/scifi_music.mp3"
+    ]);
+    this.load.audio("shoot", [
+      "./static/assets/audio/boop.ogg",
+      "./static/assets/audio/boop.mp3"
+    ]);
   }
 
   onProgress(value) {
