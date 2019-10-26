@@ -95,6 +95,11 @@ class PreloadScene extends Phaser.Scene {
       "./static/assets/audio/boop.mp3"
     ]);
 
+    this.load.audio("tileHit", [
+      "./static/assets/audio/tile_destroy.ogg",
+      "./static/assets/audio/tile_destroy.mp3"
+    ]);
+
     //video
     this.load.audio("outro_audio", "./static/assets/audio/outro_audio.mp3");
     this.load.audio("intro_audio", "./static/assets/audio/intro_audio.mp3");

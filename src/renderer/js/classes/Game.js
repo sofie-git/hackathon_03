@@ -2,6 +2,7 @@ const PreloadScene = require("./scenes/PreloadScene.js");
 const BootScene = require("./scenes/BootScene.js");
 const GameScene = require("./scenes/GameScene.js");
 const EndScene = require("./scenes/EndScene.js");
+
 class Game extends Phaser.Game {
   constructor() {
     super({
@@ -14,7 +15,7 @@ class Game extends Phaser.Game {
         default: `arcade`,
         arcade: {
           gravity: { y: 0 },
-          debug: true
+          debug: false
         }
       },
       audio: {

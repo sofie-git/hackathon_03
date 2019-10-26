@@ -20,12 +20,12 @@ class EndScene extends Phaser.Scene {
     this.add.video(1920, 540, "outro");
     this.audio = this.sound.add("outro_audio");
     this.audio.play();
-    this.time.delayedCall(13000, this.restartGame, [], this);
+    // this.time.delayedCall(13000, this.restartGame, [], this);
   }
 
-  restartGame() {
-    this.scene.start(`boot`);
-  }
+  // restartGame() {
+  //   this.scene.start(`boot`);
+  // }
   update() {}
 }
 

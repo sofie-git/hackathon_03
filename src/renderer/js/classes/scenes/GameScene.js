@@ -14,7 +14,7 @@ class GameScene extends Phaser.Scene {
   }
 
   init() {
-    this.gameOver = false;
+    this.gameOver = true;
     //
     this.choseFire = false;
     this.choseWater = false;
@@ -265,6 +265,9 @@ class GameScene extends Phaser.Scene {
   hitTile(tileSprite, bullet) {
     try {
       //vuile code van koen (try catch)
+      this.tileBreak = this.sound.add("tileHit");
+      this.tileBreak.play();
+      //
       tileSprite.anims.play(`break`);
       bullet.destroy();
       //
