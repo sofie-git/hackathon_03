@@ -36,7 +36,6 @@ class GameScene extends Phaser.Scene {
     this.createTile();
     this.createTarget();
     this.createChosenItem();
-
     //
     this.cursors = this.input.keyboard.createCursorKeys();
     this.keyV = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.V);
@@ -44,7 +43,7 @@ class GameScene extends Phaser.Scene {
     this.keyW = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W);
     this.keyL = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.L);
     this.keyB = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.B);
-
+    //
     window.app.udpPort.on("message", this.handleOscMessage);
   }
 
@@ -161,55 +160,53 @@ class GameScene extends Phaser.Scene {
     this.tile01 = new Tile(this, 307, 589, 0);
     this.tile02 = new Tile(this, 375, 550, 1);
     this.tile03 = new Tile(this, 375, 622, 2);
-
+    //
     this.tile04 = new Tile(this, 559, 665, 3);
     this.tile05 = new Tile(this, 624, 697, 4);
     this.tile06 = new Tile(this, 624, 777, 5);
-
+    //
     this.tile07 = new Tile(this, 745, 551, 6);
-
+    //
     this.tile08 = new Tile(this, 869, 697, 7);
     this.tile09 = new Tile(this, 869, 777, 8);
     this.tile10 = new Tile(this, 929, 737, 9);
-
+    //
     this.tile11 = new Tile(this, 992, 551, 10);
     this.tile12 = new Tile(this, 1054, 514, 11);
-
+    //
     this.tile13 = new Tile(this, 1180, 665, 12);
     this.tile14 = new Tile(this, 1240, 700, 13);
-
+    //
     this.tile15 = new Tile(this, 1366, 551, 14);
     this.tile16 = new Tile(this, 1428, 512, 15);
     this.tile17 = new Tile(this, 1489, 551, 16);
-
+    //
     this.tile18 = new Tile(this, 1549, 737, 17);
-
     //Rechts
     this.tile19 = new Tile(this, 2420, 517, 18);
     this.tile20 = new Tile(this, 2480, 551, 19);
-
+    //
     this.tile21 = new Tile(this, 2480, 772, 20);
     this.tile22 = new Tile(this, 2545, 735, 21);
     this.tile23 = new Tile(this, 2610, 772, 22);
-
+    //
     this.tile24 = new Tile(this, 2727, 551, 23);
     this.tile25 = new Tile(this, 2727, 627, 24);
-
+    //
     this.tile26 = new Tile(this, 2850, 700, 25);
-
+    //
     this.tile27 = new Tile(this, 3040, 520, 26);
     this.tile28 = new Tile(this, 3040, 590, 27);
     this.tile29 = new Tile(this, 3104, 554, 28);
-
+    //
     this.tile30 = new Tile(this, 3224, 700, 29);
     this.tile31 = new Tile(this, 3290, 663, 30);
-
+    //
     this.tile32 = new Tile(this, 3409, 520, 31);
-
+    //
     this.tile33 = new Tile(this, 3469, 700, 32);
     this.tile34 = new Tile(this, 3535, 732, 33);
     this.tile35 = new Tile(this, 3595, 700, 34);
-
     //toevoegen aan de array
     tiles.push(
       this.tile01,
@@ -248,7 +245,7 @@ class GameScene extends Phaser.Scene {
       this.tile34,
       this.tile35
     );
-
+    //
     tiles.forEach(tile => {
       tile.body.allowGravity = false;
       //
@@ -401,6 +398,7 @@ class GameScene extends Phaser.Scene {
 
     if (this.gameOver) {
       this.scene.start(`gameOver`);
+      this.theme.stop();
     }
 
     if (tiles.length === 0) {
