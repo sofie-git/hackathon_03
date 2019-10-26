@@ -83,31 +83,38 @@ class PreloadScene extends Phaser.Scene {
       }
     );
 
+    //video
+
     //audio
     this.load.audio("theme", [
       "./static/assets/audio/scifi_music.ogg",
       "./static/assets/audio/scifi_music.mp3"
     ]);
+
     this.load.audio("shoot", [
       "./static/assets/audio/boop.ogg",
       "./static/assets/audio/boop.mp3"
     ]);
+
+    //video
+    this.load.audio("outro_audio", "./static/assets/audio/outro_audio.mp3");
+    this.load.audio("intro_audio", "./static/assets/audio/intro_audio.mp3");
   }
 
   onProgress(value) {
-    this.preloader.clear();
-    this.preloader.fillStyle(0xff1493, 1);
-    this.preloader.fillRect(
-      0,
-      this.game.config.height / 2,
-      this.game.config.width * value,
-      10
-    );
+    // this.preloader.clear();
+    // this.preloader.fillStyle(0xff1493, 1);
+    // this.preloader.fillRect(
+    //   0,
+    //   this.game.config.height / 2,
+    //   this.game.config.width * value,
+    //   10
+    // );
   }
 
   onComplete() {
     this.preloader.destroy();
-    this.scene.start(`game`);
+    this.scene.start(`boot`);
   }
 
   create() {}

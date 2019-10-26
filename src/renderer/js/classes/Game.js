@@ -9,7 +9,7 @@ class Game extends Phaser.Game {
       width: 3840,
       height: 1080,
       title: `TEST`,
-      scene: [BootScene, PreloadScene, GameScene, EndScene],
+      scene: [PreloadScene, BootScene, GameScene, EndScene],
       physics: {
         default: `arcade`,
         arcade: {

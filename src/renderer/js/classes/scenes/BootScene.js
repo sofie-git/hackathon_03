@@ -7,21 +7,39 @@ class BootScene extends Phaser.Scene {
       key: `boot`
     });
   }
-  create() {
-    this.text = this.add.text(
-      100,
-      this.sys.game.config.height / 2,
-      "- Water - Aarde - Vuur - Lucht -",
-      {
-        font: "30px",
-        fill: "#FFFFFF"
-      }
+
+  preload() {
+    //video
+    this.load.video(
+      "intro",
+      "./static/assets/video/intro_hackathon.mp4",
+      "loadeddata",
+      true,
+      true
     );
-    this.time.delayedCall(4000, this.startGame, [], this);
+
+    //audio
+    this.load.audio("intro_audio", "./static/assets/audio/intro_audio.mp3");
+  }
+  create() {
+    // this.text = this.add.text(
+    //   100,
+    //   this.sys.game.config.height / 2,
+    //   "- Water - Aarde - Vuur - Lucht -",
+    //   {
+    //     font: "30px",
+    //     fill: "#FFFFFF"
+    //   }
+    // );
+
+    this.add.video(1920, 540, "intro");
+    this.audio = this.sound.add("intro_audio");
+    this.audio.play();
+    this.time.delayedCall(3000, this.startGame, [], this);
   }
 
   startGame() {
-    this.scene.start(`preload`);
+    this.scene.start(`game`);
   }
 
   update() {}
