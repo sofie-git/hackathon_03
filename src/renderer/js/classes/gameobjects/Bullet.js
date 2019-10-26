@@ -113,7 +113,7 @@ class Bullet extends Phaser.Physics.Arcade.Sprite {
     this.x += this.xSpeed * delta;
     this.y += this.ySpeed * delta;
     this.born += delta;
-    if (this.x >= 3840 || this.y >= 1080) {
+    if (this.x >= 3840 || this.y >= 1080 || this.y <= 420) {
       console.log("bullet destroyed");
       this.destroy();
     }

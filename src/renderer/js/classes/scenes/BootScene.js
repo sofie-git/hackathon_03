@@ -22,16 +22,6 @@ class BootScene extends Phaser.Scene {
     this.load.audio("intro_audio", "./static/assets/audio/intro_audio.mp3");
   }
   create() {
-    // this.text = this.add.text(
-    //   100,
-    //   this.sys.game.config.height / 2,
-    //   "- Water - Aarde - Vuur - Lucht -",
-    //   {
-    //     font: "30px",
-    //     fill: "#FFFFFF"
-    //   }
-    // );
-
     this.add.video(1920, 540, "intro");
     this.audio = this.sound.add("intro_audio");
     this.audio.play();
