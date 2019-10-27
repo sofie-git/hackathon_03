@@ -1,6 +1,6 @@
 # Hackathon Groep #3
 
-Een groepswerk van Ayko Desmedt, Eva Denys, Robbe Buyle en Sofie Patoor voor het Bring Your Own Beamer evenement in Kortrijk.
+Een groepswerk van Ayko De Smedt, Eva Denys, Robbe Buyle en Sofie Patoor voor het Bring Your Own Beamer evenement in Kortrijk.
 
 ## Concept
 
@@ -9,4 +9,4 @@ De gebruiker kiest op het wii-bakje één van de vier elementen en vuurt dit af 
 
 ## Praktisch
 
-Hier welke programma's enzo we willen gebruiken
+OSCulator, Phaser, Electron
